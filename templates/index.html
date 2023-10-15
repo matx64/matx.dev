@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A static personal website for Matheus Alves." />
+  <title>Matheus Alves</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦀</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura.css" media="screen" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura-dark.css"
+    media="screen and (prefers-color-scheme: dark)" />
+  <link rel="stylesheet" href="../static/styles/main.css" />
+</head>
+
+<body>
+  <main>
+    <div id="profile-header">
+      <img src="../static/images/profile.png" alt="profile-img" />
+      <h1>Hi, I'm Matheus 👋</h1>
+    </div>
+    <p>
+      I'm a developer from Brazil. I'm currently working in Inbenta as a
+      fullstack dev and I have a degree in Computer Science. I'm most
+      interested in software engineering, deep learning and embedded systems.
+      I like fast, minimal, functional software and I'm always tinkering with
+      new tech.
+    </p>
+    <div id="profile-links">
+      <a href="https://github.com/matx64"><img src="../static/images/github.png" alt="github-icon" /></a>
+      <a href="mailto:mathalves@proton.me"><img src="../static/images/mail.png" alt="mail-icon" /></a>
+    </div>
+    <div id="blog-container">
+      <h1>Blog Posts</h1>
+      <ul>
+        {% for post in posts %}
+        <li><a href="blog/{{post.filename}}.html">{{post.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
+  <footer id="footer">
+    <span>© 2023 matx.dev | built with
+      <a href="https://oxal.org/projects/sakura/">sakura</a></span>
+  </footer>
+</body>
+
+</html>

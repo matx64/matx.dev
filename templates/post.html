@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura.css" media="screen" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura-dark.css"
+        media="screen and (prefers-color-scheme: dark)" />
+    <link rel="stylesheet" href="../static/styles/main.css" />
+</head>
+
+<body>
+    <header>
+        <a onclick="history.back()">Back</a>
+        <h1>{{ title}}</h1>
+        <p>{{ date }}</p>
+        <h5>{{ description }}</h5>
+    </header>
+    <hr>
+    <main id="post-main">
+        {{ body|markdown }}
+    </main>
+</body>
+
+</html>

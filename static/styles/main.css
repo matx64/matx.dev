@@ -18,3 +18,11 @@ main {
   border-radius: 50%;
   margin-bottom: unset;
 }
+
+#blog-container {
+  margin-bottom: 5rem;
+}
+
+#post-main {
+  margin-top: 3rem;
+}
