@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-rust@v1
+
+      - run: cargo run
+      - run: cp CNAME ./dist/
+      - run: touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: dist
+
+  deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v2.0.2
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
