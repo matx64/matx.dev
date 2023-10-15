@@ -1,5 +1,6 @@
 use askama::Template;
-use std::{error::Error, fs};
+use std::fs;
+use std::{error::Error, path::Path};
 
 pub struct Post {
     pub title: String,
@@ -18,7 +19,10 @@ pub struct PostTemplate<'a> {
     pub body: &'a str,
 }
 
-pub fn render_posts(posts: Vec<Post>) -> Result<(), Box<dyn Error>> {
+pub fn render_posts(posts: &Vec<Post>) -> Result<(), Box<dyn Error>> {
+    let target_path = Path::new("./dist/blog");
+    fs::create_dir_all(target_path)?;
+
     for post in posts {
         let post_template = PostTemplate {
             title: &post.title,
@@ -28,10 +32,6 @@ pub fn render_posts(posts: Vec<Post>) -> Result<(), Box<dyn Error>> {
         };
 
         let file_path = format!("./dist/blog/{}.html", &post.filename);
-
-        if let Some(parent_dir) = std::path::Path::new(&file_path).parent() {
-            fs::create_dir_all(parent_dir).expect("Unable to create directory.");
-        }
 
         fs::write(file_path, post_template.render()?).expect("Unable to write.");
     }

@@ -10,11 +10,13 @@
 
 <body>
     <header>
+        <a onclick="history.back()">Back</a>
         <h1>{{ title}}</h1>
+        <p>{{ date }}</p>
         <h5>{{ description }}</h5>
     </header>
     <hr>
-    <main>
+    <main id="post-main">
         {{ body|markdown }}
     </main>
 </body>
