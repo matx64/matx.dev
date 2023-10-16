@@ -1,3 +1,4 @@
+use crate::templates::PostTemplate;
 use askama::Template;
 use std::fs;
 use std::{error::Error, path::Path};
@@ -8,15 +9,6 @@ pub struct Post {
     pub date: String,
     pub body: String,
     pub filename: String,
-}
-
-#[derive(Template, Debug)]
-#[template(path = "post.html")]
-pub struct PostTemplate<'a> {
-    pub title: &'a str,
-    pub description: &'a str,
-    pub date: &'a str,
-    pub body: &'a str,
 }
 
 pub fn render_posts(posts: &Vec<Post>) -> Result<(), Box<dyn Error>> {
@@ -63,12 +55,11 @@ pub fn load_posts() -> Result<Vec<Post>, Box<dyn Error>> {
 }
 
 fn read_posts() -> Result<Vec<String>, Box<dyn Error>> {
-    let posts_dir = fs::read_dir("posts")?;
+    let posts_dir = fs::read_dir("blog-posts")?;
     let mut post_contents = Vec::new();
 
     for file in posts_dir {
-        let file = file?;
-        let contents = fs::read_to_string(file.path())?;
+        let contents = fs::read_to_string(file?.path())?;
         post_contents.push(contents);
     }
 

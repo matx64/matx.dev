@@ -1,9 +1,11 @@
-body {
-  padding: 5rem 3rem;
+h1,
+h2,
+h3 {
+  border: unset;
 }
 
-main {
-  text-align: justify;
+ul {
+  padding-left: unset;
 }
 
 #profile-header,
@@ -12,17 +14,29 @@ main {
   text-align: center;
 }
 
+#profile-desc {
+  text-align: justify;
+}
+
 #profile-header img {
-  border: 1px solid black;
+  border: 2px solid white;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   margin-bottom: unset;
 }
 
-#blog-container {
-  margin-bottom: 5rem;
+#profile-header h1 {
+  margin-bottom: 1rem !important;
 }
 
-#post-main {
+#blog-container {
+  margin-top: 3rem;
+}
+
+#post-header h1 {
+  text-align: center;
+}
+
+#post-body {
   margin-top: 3rem;
 }

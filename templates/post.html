@@ -1,23 +1,30 @@
 <html>
 
 <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura.css" media="screen" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura-dark.css"
-        media="screen and (prefers-color-scheme: dark)" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }} | matx</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦀</text></svg>" />
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" href="https://newcss.net/theme/terminal.css">
     <link rel="stylesheet" href="../static/styles/main.css" />
 </head>
 
 <body>
-    <header>
-        <a onclick="history.back()">Back</a>
-        <h1>{{ title}}</h1>
-        <p>{{ date }}</p>
-        <h5>{{ description }}</h5>
-    </header>
-    <hr>
-    <main id="post-main">
-        {{ body|markdown }}
+    <main class="container">
+        <div id="post-header">
+            <a onclick="history.back()" style="cursor: pointer;">Back</a>
+            <h1>{{ title}}</h1>
+            <p>{{ date }}</p>
+            <h6>{{ description }}</h6>
+        </div>
+        <hr>
+        <div id="post-body">
+            {{ body|markdown }}
+        </div>
     </main>
 </body>
 

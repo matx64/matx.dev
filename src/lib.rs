@@ -1,17 +1,12 @@
 mod posts;
-
-use std::{error::Error, fs, io, path::Path};
+mod templates;
 
 use askama::Template;
 use posts::{load_posts, render_posts, Post};
+use std::{error::Error, fs, io, path::Path};
+use templates::IndexTemplate;
 
-#[derive(Template)]
-#[template(path = "index.html")]
-pub struct IndexTemplate {
-    pub posts: Vec<Post>,
-}
-
-fn main() -> Result<(), Box<dyn Error>> {
+pub fn main() -> Result<(), Box<dyn Error>> {
     let target_path = Path::new("./dist");
 
     if target_path.is_dir() {
@@ -24,6 +19,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     render_index(posts)?;
 
     copy_folder(Path::new("./static"), Path::new("./dist/static"))?;
+
+    println!("\n✅ Website successfully generated in /dist folder.");
 
     Ok(())
 }
