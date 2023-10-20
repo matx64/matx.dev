@@ -70,11 +70,15 @@ fn split_header_and_body(contents: String) -> (String, String) {
     let mut header = String::new();
     let mut body = String::new();
     let mut is_header = false;
+    let mut finished_header = false; // prevents more than 1 headers
 
     for line in contents.lines() {
-        if line == "---" {
+        if line == "---" && !finished_header {
+            if is_header {
+                finished_header = true;
+            }
             is_header = !is_header;
-        } else if is_header {
+        } else if is_header && !finished_header {
             header += line;
             header += "\n";
         } else {
