@@ -2,17 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A static personal website for Matheus Alves." />
-  <title>Matheus Alves</title>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦀</text></svg>" />
-  <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
-  <link rel="stylesheet" href="https://newcss.net/theme/terminal.css">
-  <link rel="stylesheet" href="../static/styles/main.css" />
+  {% include "header.html" %}
+  <title>matx.dev</title>
 </head>
 
 <body>
@@ -32,25 +23,16 @@
 
     <div id="blog-container">
       <h1 style="text-align: center;">Blog Posts</h1>
-      <ul>
-        {% for post in posts %}
-        <details>
-          <summary><a href="blog/{{post.filename}}.html">{{ post.date }} - {{ post.title }}</a></summary>
-          <p>{{ post.description }}</p>
-        </details>
-        {% endfor %}
-      </ul>
+      {% for post in posts %}
+      <details>
+        <summary><a href="blog/{{post.filename}}.html">{{ post.date }} - {{ post.title }}</a></summary>
+        <p>{{ post.description }}</p>
+      </details>
+      {% endfor %}
     </div>
   </main>
 
-  <footer id="footer">
-    <span>© 2023 matx.dev</span>
-    <p>
-      <a href="https://github.com/matx64">github</a>
-      |
-      <a href="mailto:mathalves@proton.me">email</a>
-    </p>
-  </footer>
+  {% include "footer.html" %}
 </body>
 
 </html>

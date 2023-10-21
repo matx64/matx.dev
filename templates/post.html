@@ -1,16 +1,8 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include "header.html" %}
     <title>{{ title }} | matx</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦀</text></svg>" />
-    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
-    <link rel="stylesheet" href="https://newcss.net/theme/terminal.css">
-    <link rel="stylesheet" href="../static/styles/main.css" />
 </head>
 
 <body>
@@ -19,7 +11,7 @@
             <div>
                 <a href="/" style="cursor: pointer;">Home</a>
             </div>
-            <h1>{{ title}}</h1>
+            <h1>{{ title }}</h1>
             <p>{{ date }}</p>
             <h6>{{ description }}</h6>
         </div>
@@ -28,6 +20,7 @@
             {{ body|markdown }}
         </div>
     </main>
+    {%include "footer.html" %}
 </body>
 
 </html>
