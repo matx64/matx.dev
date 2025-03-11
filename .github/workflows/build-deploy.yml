@@ -6,19 +6,19 @@ on:
       - main
   pull_request:
     branches:
-        - main
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - run: cargo run
       - run: cp CNAME ./dist/
       - run: touch dist/.nojekyll
 
-      - uses: actions/upload-pages-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           path: dist
 
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
 
     environment:
       name: github-pages
