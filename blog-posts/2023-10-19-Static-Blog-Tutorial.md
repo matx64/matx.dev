@@ -33,6 +33,7 @@ cargo add serde, serde_yaml
 The post files will be in this folder, and they are just regular markdown files but with a YAML header on top (constrained by `---`). This header isn't rendered in the final result and serves only for parsing some post metadata. Here's an example:
 
 ###### **`2023-10-19-Static-Blog-Tutorial.md`**
+
 ```text
 ---
 title: "First Blog Post"
@@ -48,23 +49,25 @@ date: "Oct 19, 2023"
 This folder stays at root level and our template engine, Askama, will check it for template files. Askama uses regular .html files and `{% %}` or `{{ }}` tags for handling dynamic stuff. My website has only 2 templates - index and post. For the sake of simplicity, I'll only show the important Askama parts for both.
 
 ###### **`index.html`**
+
 ```hbs
 <div>
-    <h1>Blog Posts</h1>
-      <ul>
-        {% for post in posts %}
-        <details>
-            <summary>
-                <a href="blog/{{post.filename}}.html">{{ post.date }} - {{ post.title }}</a>
-            </summary>
-          <p>{{ post.description }}</p>
-        </details>
-        {% endfor %}
-      </ul>
+  <h1>Blog Posts</h1>
+  <ul>
+    {% for post in posts %}
+    <details>
+      <summary>
+        <a href="blog/{{post.filename}}.html">{{post.date}} - {{post.title}}</a>
+      </summary>
+      <p>{{post.description}}</p>
+    </details>
+    {% endfor %}
+  </ul>
 </div>
 ```
 
 ###### **`post.html`**
+
 ```hbs
 <header>
   <h1>{{ title }}</h1>
@@ -121,6 +124,7 @@ pub struct Post {
 ```
 
 Now let's add 2 helper functions:
+
 - **read_posts():** Reads the contents of all .md files inside /blog-posts.
 - **split_header_and_body():** Splits the file contents into header and body parts.
 
@@ -283,3 +287,15 @@ fn copy_folder(src: &Path, dest: &Path) -> io::Result<()> {
 The **`main()`** function runs when the application starts and it calls the load_posts() function to load the blog posts, then generates the HTML files for each post and the index page using the render_posts() and render_index() functions, respectively. It also copies static assets from the static/ directory to the ./dist/static/ directory.
 
 The copy_folder() function recursively copies files and directories from the static/ directory to ./dist/static/.
+
+### Wrapping Up
+
+The static generator + blog is now fully working. To build we just need to execute the following command:
+
+```sh
+cargo run
+```
+
+All static files are now generated in the `dist` folder! 🎉
+
+To improve development experience, it's possible to setup a simple server and use cargo-watch to watch for file changes, but this step I will leave it up to you to figure out. (it's available in my [repo](https://github.com/matx64/matx.dev))
