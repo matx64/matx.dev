@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    {% include "header.html" %}
+    <title>matx.dev</title>
+  </head>
 
-<head>
-  {% include "header.html" %}
-  <title>matx.dev</title>
-</head>
-
-<body>
-  <main class="container">
-    <div>
-      <div id="profile-header">
-        <img src="../static/images/profile.png" alt="profile-img" />
-        <h1>Hi, I'm Matheus 👋</h1>
+  <body>
+    <main class="container">
+      <div>
+        <div id="profile-header">
+          <img src="../static/images/profile.png" alt="profile-img" />
+          <h1>Hi, I'm Matheus 👋</h1>
+        </div>
+        <div id="profile-desc">
+          <p>
+            A Software Engineer mostly interested in backend development and
+            distributed systems. I like fast & minimal software and I'm always
+            tinkering with new tech.
+          </p>
+          <p>
+            I'm the solo developer of
+            <a href="https://lohbi.com">lohbi.com</a> and currently have a
+            full-time job, but I'm always open to new opportunities!
+          </p>
+        </div>
       </div>
-      <div id="profile-desc">
-        I'm a developer from Brazil. I'm currently working in Inbenta as a
-        Full Stack Developer and I have a degree in Computer Science. I'm most
-        interested in software engineering, deep learning and embedded systems.
-        I like fast & minimal software and I'm always tinkering with new tech.
+
+      <div id="blog-container">
+        <h1 style="text-align: center">Blog Posts</h1>
+        {% for post in posts %}
+        <details>
+          <summary>
+            <a href="blog/{{post.filename}}.html"
+              >{{ post.date }} - {{ post.title }}</a
+            >
+          </summary>
+          <p>{{ post.description }}</p>
+        </details>
+        {% endfor %}
       </div>
-    </div>
+    </main>
 
-    <div id="blog-container">
-      <h1 style="text-align: center;">Blog Posts</h1>
-      {% for post in posts %}
-      <details>
-        <summary><a href="blog/{{post.filename}}.html">{{ post.date }} - {{ post.title }}</a></summary>
-        <p>{{ post.description }}</p>
-      </details>
-      {% endfor %}
-    </div>
-  </main>
-
-  {% include "footer.html" %}
-</body>
-
+    {% include "footer.html" %}
+  </body>
 </html>
