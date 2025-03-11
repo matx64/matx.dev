@@ -18,7 +18,7 @@ jobs:
       - run: cp CNAME ./dist/
       - run: touch dist/.nojekyll
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
