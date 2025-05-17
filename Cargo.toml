@@ -1,16 +1,6 @@
 [package]
 name = "matx_dev"
 version = "0.1.0"
-edition = "2021"
-
-[[bin]]
-name = "matx_dev"
-path = "src/lib.rs"
+edition = "2024"
 
 [dependencies]
-askama = { version = "0.12.0", features = ["markdown"] }
-serde = "1.0.188"
-serde_yaml = "0.9.25"
-
-[workspace]
-members = ["serve"]
