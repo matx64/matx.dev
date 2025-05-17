@@ -3,5 +3,9 @@ name = "matx_dev"
 version = "0.1.0"
 edition = "2024"
 
+[[bin]]
+name = "matx_dev"
+path = "src/lib.rs"
+
 [dependencies]
 minijinja = "2.10.2"
