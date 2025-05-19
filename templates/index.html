@@ -20,15 +20,15 @@
   </div>
 
   <div id="blog-container">
-    <h1 style="text-align: center">Blog Posts</h1>
-    {% for post in posts %}
+    <h1 style="text-align: center">Articles</h1>
+    {% for article in articles %}
     <details>
       <summary>
-        <a href="blog/{{post.filename}}.html"
-          >{{ post.date }} - {{ post.title }}</a
+        <a href="blog/{{article.slug}}.html"
+          >{{ article.date }} - {{ article.title }}</a
         >
       </summary>
-      <p>{{ post.description }}</p>
+      <p>{{ article.description }}</p>
     </details>
     {% endfor %}
   </div>

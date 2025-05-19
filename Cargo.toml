@@ -11,6 +11,7 @@ path = "src/lib.rs"
 comrak = "0.39.0"
 fs_extra = "1.3.0"
 minijinja = "2.10.2"
+serde = { version = "1.0.219", features = ["derive"] }
 yaml-rust2 = "0.10.1"
 
 [workspace]

@@ -1,7 +1,9 @@
 use comrak::{Options, markdown_to_html};
+use serde::Serialize;
 use std::fs::{read_dir, read_to_string};
 use yaml_rust2::YamlLoader;
 
+#[derive(Serialize)]
 pub struct Article {
     pub title: String,
     pub description: String,

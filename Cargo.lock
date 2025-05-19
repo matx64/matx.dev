@@ -694,6 +694,7 @@ dependencies = [
  "comrak",
  "fs_extra",
  "minijinja",
+ "serde",
  "yaml-rust2",
 ]
 
