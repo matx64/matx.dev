@@ -1,24 +1,17 @@
-use axum::{routing::get_service, Router};
+use axum::Router;
 use tower_http::services::ServeDir;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    matx_dev::main()?;
+async fn main() {
+    matx_dev::generate_website();
 
-    let addr = &"127.0.0.1:1337";
+    let app = Router::new().fallback_service(ServeDir::new(format!(
+        "{}/../dist",
+        env!("CARGO_MANIFEST_DIR")
+    )));
 
-    let app = Router::new().nest_service(
-        "",
-        get_service(ServeDir::new(format!(
-            "{}/../dist",
-            env!("CARGO_MANIFEST_DIR")
-        ))),
-    );
-
-    println!("\n💻 Serving website at http://{}", &addr);
-    axum::Server::bind(&addr.parse()?)
-        .serve(app.into_make_service())
-        .await?;
-
-    Ok(())
+    let addr = "localhost:3000";
+    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+    println!("🚀 Serving site at http://{}", addr);
+    axum::serve(listener, app).await.unwrap();
 }

@@ -1,58 +1,60 @@
-mod posts;
-mod templates;
+mod blog;
 
-use askama::Template;
-use posts::{load_posts, render_posts, Post};
-use std::{error::Error, fs, io, path::Path};
-use templates::IndexTemplate;
+use crate::blog::{Article, get_articles};
+use fs_extra::{
+    copy_items,
+    dir::{CopyOptions, create},
+};
+use minijinja::{Environment, context};
+use std::fs::{self, create_dir_all, read_to_string};
+use std::path::Path;
 
-pub fn main() -> Result<(), Box<dyn Error>> {
-    let target_path = Path::new("./dist");
+pub fn generate_website() {
+    init_dist();
+    let mut env = Environment::new();
 
-    if target_path.is_dir() {
-        fs::remove_dir_all(target_path)?;
-    }
+    let layout_template = read_to_string(Path::new("templates/layout.html")).unwrap();
+    let article_template = read_to_string(Path::new("templates/article.html")).unwrap();
+    env.add_template("layout.html", &layout_template).unwrap();
+    env.add_template("article.html", &article_template).unwrap();
 
-    let posts = load_posts()?;
-
-    render_posts(&posts)?;
-    render_index(posts)?;
-
-    copy_folder(Path::new("./static"), Path::new("./dist/static"))?;
-
-    println!("\n✅ Website successfully generated in /dist folder.");
-
-    Ok(())
+    let articles = get_articles();
+    render_index(&env, &articles);
+    render_blog(&env, &articles);
 }
 
-fn render_index(posts: Vec<Post>) -> Result<(), Box<dyn Error>> {
-    let index_template = IndexTemplate { posts };
-
-    fs::write("./dist/index.html", index_template.render()?).expect("Unable to write.");
-
-    Ok(())
+fn init_dist() {
+    let dist_path = Path::new("dist");
+    let static_path = Path::new("static");
+    create(dist_path, true).unwrap();
+    copy_items(&[static_path], dist_path, &CopyOptions::new()).unwrap();
 }
 
-fn copy_folder(src: &Path, dest: &Path) -> io::Result<()> {
-    if src.is_dir() {
-        // Create the destination directory if it doesn't exist
-        fs::create_dir_all(dest)?;
+pub fn render_index(env: &Environment, articles: &[Article]) {
+    let src = Path::new("templates/index.html");
+    let dest = Path::new("dist/index.html");
 
-        // Iterate over the entries in the source directory
-        for entry in fs::read_dir(src)? {
-            let entry = entry?;
-            let entry_path = entry.path();
-            let new_dest = dest.join(entry.file_name());
+    let contents = read_to_string(src).unwrap();
+    let template_str = env
+        .render_str(
+            &contents,
+            context! {title => "matx.dev", articles => articles},
+        )
+        .unwrap();
 
-            if entry_path.is_dir() {
-                // Recursively copy subdirectories
-                copy_folder(&entry_path, &new_dest)?;
-            } else {
-                // Copy files
-                fs::copy(&entry_path, &new_dest)?;
-            }
-        }
+    fs::write(dest, template_str).unwrap();
+}
+
+pub fn render_blog(env: &Environment, articles: &[Article]) {
+    create_dir_all("dist/blog").unwrap();
+
+    for article in articles {
+        let template = env.get_template("article.html").unwrap();
+        let file_str = template
+            .render(context! {title => &article.title, description => &article.description, body => &article.body})
+            .unwrap();
+
+        let path = format!("dist/blog/{}.html", &article.slug);
+        fs::write(Path::new(&path), file_str).unwrap();
     }
-
-    Ok(())
 }
