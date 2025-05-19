@@ -3,6 +3,8 @@ use tower_http::services::ServeDir;
 
 #[tokio::main]
 async fn main() {
+    matx_dev::generate_website();
+
     let app = Router::new().fallback_service(ServeDir::new(format!(
         "{}/../dist",
         env!("CARGO_MANIFEST_DIR")

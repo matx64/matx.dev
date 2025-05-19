@@ -1038,6 +1038,7 @@ name = "serve"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "matx_dev",
  "tokio",
  "tower-http",
 ]

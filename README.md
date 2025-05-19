@@ -1,6 +1,6 @@
 # 🦀 matx.dev
 
-My personal website. It's a custom static website generator that supports blog posts.
+A statically generated website. Supports markdown articles for blogging.
 
 ### Build
 
@@ -10,7 +10,6 @@ cargo run
 
 All static files are generated in the `dist` folder.
 
-
 ### Serving and Development
 
 ```sh
@@ -18,5 +17,5 @@ All static files are generated in the `dist` folder.
 cargo run -p serve
 
 # watch for file changes
-cargo-watch -c -q -w . -x "run -p serve"
+watchexec -r "cargo run -p serve"
 ```
