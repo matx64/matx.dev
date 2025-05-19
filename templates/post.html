@@ -9,6 +9,6 @@
     <h6>{{ description }}</h6>
   </div>
   <hr />
-  <div id="post-body">{{ body }}</div>
+  <div id="post-body">{{ body | safe }}</div>
 </main>
 {% endblock content%}

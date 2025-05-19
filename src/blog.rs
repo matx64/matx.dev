@@ -1,20 +1,61 @@
-use std::{fs::{self, create_dir_all}, path::Path};
-use comrak::{markdown_to_html, Options};
-use minijinja::{context, Environment};
+use comrak::{Options, markdown_to_html};
+use std::fs::{read_dir, read_to_string};
+use yaml_rust2::YamlLoader;
 
-pub fn render_blog(env: &Environment) {
-    create_dir_all("dist/blog").unwrap();
+pub struct Article {
+    pub title: String,
+    pub description: String,
+    pub date: String,
+    pub body: String,
+    pub slug: String,
+}
 
-    for file in fs::read_dir("articles").unwrap().flatten() {
-        let contents = fs::read_to_string(file.path()).unwrap();
+pub fn get_articles() -> Vec<Article> {
+    let mut articles = vec![];
+
+    for file in read_dir("articles").unwrap().flatten() {
+        let contents = read_to_string(file.path()).unwrap();
         let (header, body) = split_header_and_body(contents);
-        
+
+        let article = Article::new(header, body);
+        articles.push(article);
+    }
+
+    articles
+}
+
+impl Article {
+    pub fn new(header: String, body: String) -> Self {
+        let doc = YamlLoader::load_from_str(&header).expect("Invalid Article header format");
+        let doc = &doc[0];
+
+        let title = doc["title"]
+            .as_str()
+            .expect("Article missing title header property")
+            .to_owned();
+        let description = doc["description"]
+            .as_str()
+            .expect("Article missing description header property")
+            .to_owned();
+        let date = doc["date"]
+            .as_str()
+            .expect("Article missing date header property")
+            .to_owned();
         let body = markdown_to_html(&body, &Options::default());
+        let slug = title
+            .split(' ')
+            .collect::<Vec<&str>>()
+            .join("-")
+            .as_str()
+            .to_owned();
 
-        let template = env.get_template("post.html").unwrap();
-        let file_str = template.render(context! {title => "post", body => body}).unwrap();
-
-        fs::write(Path::new("dist/blog/post1.html"), file_str).unwrap();
+        Self {
+            title,
+            description,
+            date,
+            body,
+            slug,
+        }
     }
 }
 
