@@ -51,7 +51,7 @@ pub fn render_blog(env: &Environment, articles: &[Article]) {
     for article in articles {
         let template = env.get_template("article.html").unwrap();
         let file_str = template
-            .render(context! {title => &article.title, description => &article.description, body => &article.body})
+            .render(context! {title => &article.title, description => &article.description, date => &article.date, body => &article.body})
             .unwrap();
 
         let path = format!("dist/blog/{}.html", &article.slug);

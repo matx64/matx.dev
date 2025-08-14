@@ -3,6 +3,7 @@
 #post-header,
 #footer {
   text-align: center;
+  text-wrap: balance;
 }
 
 #profile-header img {
@@ -14,22 +15,13 @@
   width: 259px;
 }
 
-/* #profile-header h1 {
-  margin-bottom: 1rem !important;
+@media (min-width: 1280px) {
+  .container {
+    max-width: 950px !important;
+  }
 }
-
-#blog-container {
-  margin-top: 3rem;
+@media (min-width: 1536px) {
+  .container {
+    max-width: 950px !important;
+  }
 }
-
-#blog-container h1 {
-  margin-bottom: 1rem;
-}
-
-#post-body {
-  margin-top: 3rem;
-}
-
-#footer {
-  margin-top: 4rem;
-} */
