@@ -33,18 +33,19 @@
 
     <link rel="icon" href="../static/images/favicon.png" />
 
-    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     />
-    <link rel="stylesheet" href="https://newcss.net/theme/terminal.css" />
+
     <link rel="stylesheet" href="../static/styles/main.css" />
 
     <title>{% block title %}{{ title }}{% endblock title %}</title>
   </head>
-  <body>
-    {% block content %} {% endblock content %}
+
+  <body class="container">
+    {% block header %} {% endblock header %} {% block content %} {% endblock
+    content %}
 
     <footer id="footer">
       <span>© 2025 matx.dev</span>

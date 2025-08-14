@@ -1,22 +1,8 @@
-h1,
-h2,
-h3 {
-  border: unset;
-}
-
-ul {
-  padding-left: unset;
-}
-
 #profile-header,
 #profile-links,
 #post-header,
 #footer {
   text-align: center;
-}
-
-#profile-desc {
-  text-align: justify;
 }
 
 #profile-header img {
@@ -28,7 +14,7 @@ ul {
   width: 259px;
 }
 
-#profile-header h1 {
+/* #profile-header h1 {
   margin-bottom: 1rem !important;
 }
 
@@ -46,4 +32,4 @@ ul {
 
 #footer {
   margin-top: 4rem;
-}
+} */

@@ -1,5 +1,5 @@
 {% extends "layout.html" %} {% block content %}
-<main class="container">
+<main>
   <div>
     <div id="profile-header">
       <img src="../static/images/profile.png" alt="profile-img" />
@@ -20,7 +20,7 @@
   </div>
 
   <div id="blog-container">
-    <h1 style="text-align: center">Articles</h1>
+    <h3 style="text-align: center">Articles</h3>
     {% for article in articles %}
     <details>
       <summary>
