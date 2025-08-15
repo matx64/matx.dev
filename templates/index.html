@@ -1,35 +1,37 @@
 {% extends "layout.html" %} {% block content %}
 <main>
-  <div>
-    <div id="profile-header">
-      <img src="../static/images/profile.png" alt="profile-img" />
-      <h1>Hi, I'm Matheus 👋</h1>
+  <div id="about">
+    <div>
+      <img src="../static/images/profile.png" alt="about-img" />
     </div>
-    <div id="profile-desc">
+
+    <div>
+      <h3>Hi, I'm Matheus 👋</h3>
       <p>
-        A Software Engineer mostly interested in backend development and
-        distributed systems. I like fast & minimal software and I'm always
-        tinkering with new tech.
+        I'm a software engineer who loves computers and here I write about some
+        of my experiences building tech.
       </p>
       <p>
-        I'm the solo developer of
-        <a href="https://lohbi.com">lohbi.com</a> and currently have a full-time
-        job, but I'm always open to new opportunities!
+        Most of my work revolves around backend systems and Rust. In my spare
+        time, I tinker with projects like
+        <a href="https://lohbi.com">lohbi</a> and
+        <a href="https://github.com/matx64/synche">synche</a>.
+      </p>
+      <p>
+        You can find me on <a href="https://github.com/matx64">github</a>,
+        <a href="https://www.linkedin.com/in/matheustalves/">linkedin</a> or
+        <a href="mailto:mathalves@proton.me">email</a>.
       </p>
     </div>
   </div>
 
   <div id="blog-container">
-    <h3 style="text-align: center">Articles</h3>
+    <h3>Articles</h3>
     {% for article in articles %}
-    <details>
-      <summary>
-        <a href="blog/{{article.slug}}.html"
-          >{{ article.date }} - {{ article.title }}</a
-        >
-      </summary>
-      <p>{{ article.description }}</p>
-    </details>
+    <div class="article">
+      <h4><a href="blog/{{article.slug}}.html">{{ article.title }}</a></h4>
+      <small>{{ article.date }}</small>
+    </div>
     {% endfor %}
   </div>
 </main>
