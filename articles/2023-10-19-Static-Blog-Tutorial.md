@@ -1,6 +1,5 @@
 ---
 title: "Building a Custom Static Website Generator in Rust"
-description: "How I built this website/blog in Rust"
 date: "Oct 19, 2023"
 ---
 

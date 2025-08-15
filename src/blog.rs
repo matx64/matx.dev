@@ -6,7 +6,6 @@ use yaml_rust2::YamlLoader;
 #[derive(Serialize)]
 pub struct Article {
     pub title: String,
-    pub description: String,
     pub date: String,
     pub body: String,
     pub slug: String,
@@ -35,10 +34,6 @@ impl Article {
             .as_str()
             .expect("Article missing title header property")
             .to_owned();
-        let description = doc["description"]
-            .as_str()
-            .expect("Article missing description header property")
-            .to_owned();
         let date = doc["date"]
             .as_str()
             .expect("Article missing date header property")
@@ -53,7 +48,6 @@ impl Article {
 
         Self {
             title,
-            description,
             date,
             body,
             slug,
