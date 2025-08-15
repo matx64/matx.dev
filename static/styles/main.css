@@ -12,9 +12,31 @@ a {
   color: #388bfd;
 }
 
+#profile-header,
+#post-header,
+footer {
+  text-align: center;
+  text-wrap: balance;
+}
+
+#profile-header img {
+  border: 2px solid #388bfd;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  margin-bottom: unset;
+  height: 259px;
+  width: 259px;
+}
+
 pre {
   background: #cae8ff;
   padding: 1rem;
+  border: 1px solid #388bfd;
+  border-radius: 2px;
+}
+
+code:not(pre > code) {
+  background: #cae8ff;
   border: 1px solid #388bfd;
   border-radius: 2px;
 }
@@ -25,24 +47,8 @@ pre {
     color: #e1e1e1;
   }
 
-  pre {
+  pre,
+  code:not(pre > code) {
     background: #0c2d6b;
   }
-}
-
-#profile-header,
-#profile-links,
-#post-header,
-#footer {
-  text-align: center;
-  text-wrap: balance;
-}
-
-#profile-header img {
-  border: 2px solid white;
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  margin-bottom: unset;
-  height: 259px;
-  width: 259px;
 }

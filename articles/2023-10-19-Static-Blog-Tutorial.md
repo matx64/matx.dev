@@ -32,7 +32,7 @@ cargo add serde, serde_yaml
 
 The post files will be in this folder, and they are just regular markdown files but with a YAML header on top (constrained by `---`). This header isn't rendered in the final result and serves only for parsing some post metadata. Here's an example:
 
-###### **`2023-10-19-Static-Blog-Tutorial.md`**
+**`2023-10-19-Static-Blog-Tutorial.md`**
 
 ```text
 ---
@@ -48,7 +48,7 @@ date: "Oct 19, 2023"
 
 This folder stays at root level and our template engine, Askama, will check it for template files. Askama uses regular .html files and `{% %}` or `{{ }}` tags for handling dynamic stuff. My website has only 2 templates - index and post. For the sake of simplicity, I'll only show the important Askama parts for both.
 
-###### **`index.html`**
+**`index.html`**
 
 ```hbs
 <div>
@@ -66,7 +66,7 @@ This folder stays at root level and our template engine, Askama, will check it f
 </div>
 ```
 
-###### **`post.html`**
+**`post.html`**
 
 ```hbs
 <header>
