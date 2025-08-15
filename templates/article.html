@@ -2,13 +2,47 @@
 <header id="post-header">
   <hgroup>
     <h2>{{ title }}</h2>
-    <p>{{ date }}</p>
+    <small>{{ date }}</small>
   </hgroup>
-  <div style="text-align: start">
-    <a href="/"><span>&#8592;</span> Home</a>
+
+  <div style="text-align: start; margin-top: 1rem">
+    <strong
+      ><a href="/"><span>&#8592;</span> Home</a></strong
+    >
   </div>
   <hr />
 </header>
 
 <main>{{ body | safe }}</main>
+
+<footer>
+  <div id="more-articles">
+    <strong><a href="/">+ More articles</a></strong>
+  </div>
+
+  <div id="about">
+    <div>
+      <img src="../static/images/profile.png" alt="about-img" />
+    </div>
+
+    <div>
+      <h3>Hi, I'm Matheus 👋</h3>
+      <p>
+        I'm a software engineer who loves computers and here I write about some
+        of my experiences building tech.
+      </p>
+      <p>
+        Most of my work revolves around backend systems and Rust. In my spare
+        time, I tinker with projects like
+        <a href="https://lohbi.com">lohbi</a> and
+        <a href="https://github.com/matx64/synche">synche</a>.
+      </p>
+      <p>
+        You can find me on <a href="https://github.com/matx64">github</a>,
+        <a href="https://www.linkedin.com/in/matheustalves/">linkedin</a> or
+        <a href="mailto:mathalves@proton.me">email</a>.
+      </p>
+    </div>
+  </div>
+</footer>
 {% endblock content%}

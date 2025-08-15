@@ -51,6 +51,16 @@ a {
   }
 }
 
+#post-header {
+  text-align: center;
+  text-wrap: balance;
+  margin-top: 1rem;
+
+  h2 {
+    margin: 0;
+  }
+}
+
 pre {
   background: #cae8ff;
   padding: 1rem;
@@ -62,6 +72,12 @@ code:not(pre > code) {
   background: #cae8ff;
   border: 1px solid #388bfd;
   border-radius: 2px;
+}
+
+#more-articles {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: -1rem;
 }
 
 @media (prefers-color-scheme: dark) {
