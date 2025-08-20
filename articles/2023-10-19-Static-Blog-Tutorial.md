@@ -33,13 +33,12 @@ The post files will be in this folder, and they are just regular markdown files 
 
 **`2023-10-19-Static-Blog-Tutorial.md`**
 
-```text
+```yaml
 ---
 title: "First Blog Post"
 description: "An example blog post description"
 date: "Oct 19, 2023"
 ---
-
 ~lorem ipsum~
 ```
 
@@ -49,7 +48,7 @@ This folder stays at root level and our template engine, Askama, will check it f
 
 **`index.html`**
 
-```hbs
+```html
 <div>
   <h1>Blog Posts</h1>
   <ul>
@@ -67,16 +66,17 @@ This folder stays at root level and our template engine, Askama, will check it f
 
 **`post.html`**
 
-```hbs
+```html
 <header>
   <h1>{{ title }}</h1>
   <p>{{ date }}</p>
   <h6>{{ description }}</h6>
 </header>
-<hr>
+<hr />
 <main>
   {{ body|markdown }}
-<main>
+  <main></main>
+</main>
 ```
 
 ### The src/templates.rs Module

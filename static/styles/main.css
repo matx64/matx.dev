@@ -25,6 +25,8 @@ a {
   margin-bottom: 2rem;
   max-width: 600px;
   gap: 1rem;
+  line-height: normal;
+  background: white;
 
   img {
     height: 150px;
@@ -62,17 +64,16 @@ a {
   }
 }
 
-pre {
-  background: #cae8ff;
-  padding: 1rem;
+pre,
+code:not(pre > code) {
   border: 1px solid #388bfd;
   border-radius: 2px;
 }
 
 code:not(pre > code) {
-  background: #cae8ff;
-  border: 1px solid #388bfd;
-  border-radius: 2px;
+  background: white;
+  padding: 2px;
+  font-weight: bold;
 }
 
 #more-articles {
@@ -87,9 +88,12 @@ code:not(pre > code) {
     color: #e1e1e1;
   }
 
-  pre,
   code:not(pre > code) {
-    background: #0c2d6b;
+    background: #0d0d0d;
+  }
+
+  #about {
+    background: #0d0d0d;
   }
 }
 
