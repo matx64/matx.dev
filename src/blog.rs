@@ -12,9 +12,12 @@ pub struct Article {
 }
 
 pub fn get_articles() -> Vec<Article> {
-    let mut articles = vec![];
+    let mut entries: Vec<_> = read_dir("articles").unwrap().flatten().collect();
+    entries.sort_by_key(|b| std::cmp::Reverse(b.file_name()));
 
-    for file in read_dir("articles").unwrap().flatten() {
+    let mut articles = Vec::new();
+
+    for file in entries {
         let contents = read_to_string(file.path()).unwrap();
         let (header, body) = split_header_and_body(contents);
 
