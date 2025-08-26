@@ -1,3 +1,7 @@
+:root {
+  --main-color: #388bfd;
+}
+
 body {
   background: #fafbfc;
   color: #24292e;
@@ -10,7 +14,13 @@ body {
 }
 
 a {
-  color: #388bfd;
+  color: var(--main-color);
+}
+
+blockquote {
+  margin: 1em 0;
+  border-left: 4px solid var(--main-color);
+  padding: 0 1em;
 }
 
 #about {
@@ -18,7 +28,7 @@ a {
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  border: 2px solid #388bfd;
+  border: 2px solid var(--main-color);
   border-radius: 2px;
   margin: auto;
   margin-top: 3rem;
@@ -66,7 +76,7 @@ a {
 
 pre,
 code:not(pre > code) {
-  border: 1px solid #388bfd;
+  border: 1px solid var(--main-color);
   border-radius: 2px;
 }
 
