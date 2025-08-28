@@ -1,5 +1,7 @@
 :root {
   --main-color: #388bfd;
+  --alt-bg-color: #f3f9ff;
+  --alt-bg-color-dark: #000b1a;
 }
 
 body {
@@ -28,15 +30,14 @@ blockquote {
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  border: 2px solid var(--main-color);
+  border: 1px solid var(--main-color);
   border-radius: 2px;
   margin: auto;
   margin-top: 3rem;
   margin-bottom: 2rem;
   max-width: 600px;
   gap: 1rem;
-  line-height: normal;
-  background: white;
+  background: var(--alt-bg-color);
 
   img {
     height: 150px;
@@ -58,6 +59,7 @@ blockquote {
 
   .article {
     margin-bottom: 2rem;
+
     h4 {
       margin: 0;
     }
@@ -81,7 +83,7 @@ code:not(pre > code) {
 }
 
 code:not(pre > code) {
-  background: white;
+  background: var(--alt-bg-color);
   padding: 2px;
   font-weight: bold;
 }
@@ -99,11 +101,11 @@ code:not(pre > code) {
   }
 
   code:not(pre > code) {
-    background: #0d0d0d;
+    background: var(--alt-bg-color-dark);
   }
 
   #about {
-    background: #0d0d0d;
+    background: var(--alt-bg-color-dark);
   }
 }
 

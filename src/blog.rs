@@ -11,23 +11,6 @@ pub struct Article {
     pub slug: String,
 }
 
-pub fn get_articles() -> Vec<Article> {
-    let mut entries: Vec<_> = read_dir("articles").unwrap().flatten().collect();
-    entries.sort_by_key(|b| std::cmp::Reverse(b.file_name()));
-
-    let mut articles = Vec::new();
-
-    for file in entries {
-        let contents = read_to_string(file.path()).unwrap();
-        let (header, body) = split_header_and_body(contents);
-
-        let article = Article::new(header, body);
-        articles.push(article);
-    }
-
-    articles
-}
-
 impl Article {
     pub fn new(header: String, body: String) -> Self {
         let doc = YamlLoader::load_from_str(&header).expect("Invalid Article header format");
@@ -56,6 +39,23 @@ impl Article {
             slug,
         }
     }
+}
+
+pub fn get_articles() -> Vec<Article> {
+    let mut entries: Vec<_> = read_dir("articles").unwrap().flatten().collect();
+    entries.sort_by_key(|b| std::cmp::Reverse(b.file_name()));
+
+    let mut articles = Vec::new();
+
+    for file in entries {
+        let contents = read_to_string(file.path()).unwrap();
+        let (header, body) = split_header_and_body(contents);
+
+        let article = Article::new(header, body);
+        articles.push(article);
+    }
+
+    articles
 }
 
 fn split_header_and_body(contents: String) -> (String, String) {
