@@ -1,4 +1,4 @@
-# 🦀 matx.dev
+# matx.dev
 
 A statically generated website. Supports markdown articles for blogging.
 
