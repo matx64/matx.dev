@@ -124,8 +124,8 @@ pub struct Post {
 
 Now let's add 2 helper functions:
 
-- **read_posts():** Reads the contents of all .md files inside /blog-posts.
-- **split_header_and_body():** Splits the file contents into header and body parts.
+- **`read_posts()`** Reads the contents of all .md files inside /blog-posts.
+- **`split_header_and_body()`** Splits the file contents into header and body parts.
 
 ```rust
 fn read_posts() -> Result<Vec<String>, Box<dyn Error>> {
@@ -216,7 +216,7 @@ pub fn render_posts(posts: &Vec<Post>) -> Result<(), Box<dyn Error>> {
 }
 ```
 
-That's it! The **posts.rs** module is done and we are now able to handle blog posts. Let's move to the final puzzle piece of the project.
+That's it! The **`posts.rs`** module is done and we are now able to handle blog posts. Let's move to the final puzzle piece of the project.
 
 ### The src/lib.rs Module
 

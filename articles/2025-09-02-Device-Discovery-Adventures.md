@@ -3,11 +3,11 @@ title: "Device Discovery Adventures"
 date: "Sep 02, 2025"
 ---
 
-> 📌 TL;DR: If you're building device discovery, just use **mDNS**. It's battle-tested (Apple uses it) and more reliable compared to the other options.
+> 📌 TL;DR: If you're building device discovery, just use `mDNS`. It's battle-tested (Apple uses it) and more reliable compared to the other options.
 
 Recently I decided to build a file synchronization app from scratch ([synche](https://github.com/matx64/synche)) and the first requirement was to allow devices to discover each other in my local network.
 
-Since it was my first time implementing this feature, I did some research and found 3 popular solutions: **UDP Broadcast**, **UDP Multicast** and **mDNS**.
+Since it was my first time implementing this feature, I did some research and found 3 popular solutions: `UDP Broadcast`, `UDP Multicast` and `mDNS`.
 
 Initially, I chose UDP Broadcast because it met my requirements and seemed very simple to implement, however I ended up implementing all three options after running into problems during testing.
 
@@ -31,7 +31,7 @@ With that in mind, my initial design for each peer looked like this:
 
 This solution was very simple to implement with `tokio::net::UdpSocket` and worked fine initially. Unfortunately, after some testing, I started seeing strange behavior between my MacBook and Windows desktop: the desktop received the Mac's pings and handled them correctly, but the Mac never seemed to receive the desktop's messages.
 
-I used **Wireshark** to monitor both computers and see whether the packets at least arrived at the network interface. The desktop's packets did not appear in the Mac's capture, so the problem was below the application layer as the packets never reached the Mac at all. The behavior was intermittent: sometimes discovery worked perfectly, other times it failed.
+I used `Wireshark` to monitor both computers and see whether the packets at least arrived at the network interface. The desktop's packets did not appear in the Mac's capture, so the problem was below the application layer as the packets never reached the Mac at all. The behavior was intermittent: sometimes discovery worked perfectly, other times it failed.
 
 I tried every obvious option to fix:
 
