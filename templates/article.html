@@ -1,58 +1,42 @@
 {% extends "layout.html" %} {% block content %}
-<header id="post-header">
-  <hgroup>
-    <h2>{{ title }}</h2>
-    <small>{{ date }}</small>
-  </hgroup>
+<article class="col">
+    <header class="post-header">
+        <h1 class="post-title">{{ title }}</h1>
+        <time class="post-date">{{ date }}</time>
+    </header>
 
-  <div style="text-align: start; margin-top: 1rem">
-    <strong
-      ><a href="/"><span>&#8592;</span> Home</a></strong
-    >
-  </div>
-  <hr />
-</header>
-
-<main>{{ body | safe }}</main>
-
-<footer>
-  <div id="more-articles">
-    <strong><a href="/">+ More articles</a></strong>
-  </div>
-
-  <div id="about">
-    <div>
-      <img src="../static/images/profile.png" alt="about-img" />
-    </div>
-
-    <div>
-      <h3>Hi, I'm Matheus 👋</h3>
-      <p>
-        I'm a software engineer who loves computers and here I write about some
-        of my experiences building tech.
-      </p>
-      <p>
-        Most of my work revolves around backend systems and Rust. In my spare
-        time, I tinker with projects like
-        <a href="https://lohbi.com">lohbi</a> and
-        <a href="https://github.com/matx64/synche">synche</a>.
-      </p>
-      <p>
-        You can find me on <a href="https://github.com/matx64">github</a>,
-        <a href="https://www.linkedin.com/in/matheustalves/">linkedin</a> or
-        <a href="mailto:hey.malves@gmail.com">email</a>.
-      </p>
-    </div>
-  </div>
+    <div class="post-body">{{ body | safe }}</div>
+</article>
+{% endblock content %} {% block footer %}
+<footer class="post-footer col">
+    <a href="/" class="back-link">&larr; All writing</a>
+    <section class="bio">
+        <img
+            src="/static/images/profile.png"
+            alt="Matheus Alves"
+            class="bio-avatar"
+        />
+        <div class="bio-text">
+            <p class="bio-name">Matheus Alves</p>
+            <p>
+                Software engineer focused on backend systems and Rust. Currently
+                working on a database migration tool at
+                <a href="https://eden.dev">Eden</a>.
+            </p>
+            <p>
+                I also tinker on side projects like
+                <a href="https://lohbi.com">lohbi</a> and
+                <a href="https://github.com/matx64/synche">synche</a>. This is
+                where I write about things I find interesting along the way.
+            </p>
+            <div class="bio-links">
+                <a href="https://github.com/matx64">github</a>
+                <a href="https://www.linkedin.com/in/matheustalves/"
+                    >linkedin</a
+                >
+                <a href="mailto:hey.malves@gmail.com">email</a>
+            </div>
+        </div>
+    </section>
 </footer>
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-<script>
-  hljs.highlightAll();
-</script>
-{% endblock content%}
+{% endblock footer %}

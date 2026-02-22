@@ -13,23 +13,31 @@
 
     <meta name="robots" content="index, follow" />
 
-    <meta name="og:title" content="Matheus Alves's Blog" />
-    <meta name="og:description" content="Matheus Alves's Blog" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="Matheus Alves's Blog" />
     <meta
-      name="og:image"
+      property="og:image"
       content="https://matx.dev/static/images/profile.png"
     />
-    <meta name="og:url" content="https://matx.dev" />
-    <meta name="og:type" content="website" />
+    <meta property="og:url" content="https://matx.dev" />
+    <meta property="og:type" content="website" />
 
-    <link rel="icon" href="../static/images/favicon.png" />
+    <link rel="icon" href="/static/images/favicon.png" />
 
-    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="/static/styles/main.css" />
 
     <title>{% block title %}{{ title }}{% endblock title %}</title>
   </head>
 
   <body>
-    {% block content %} {% endblock content %}
+    <nav class="site-nav">
+      <div class="col">
+        <a href="/">matx.dev</a>
+      </div>
+    </nav>
+
+    {% block content %}{% endblock content %}
+
+    {% block footer %}{% endblock footer %}
   </body>
 </html>

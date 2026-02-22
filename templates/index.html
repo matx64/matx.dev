@@ -1,38 +1,42 @@
 {% extends "layout.html" %} {% block content %}
-<main>
-  <div id="about">
-    <div>
-      <img src="../static/images/profile.png" alt="about-img" />
-    </div>
+<main class="col">
+    <section class="bio">
+        <img
+            src="/static/images/profile.png"
+            alt="Matheus Alves"
+            class="bio-avatar"
+        />
+        <div class="bio-text">
+            <h1 class="bio-name">Matheus Alves</h1>
+            <p>
+                Software engineer focused on backend systems and Rust. Currently
+                working on a database migration tool at
+                <a href="https://eden.dev">Eden</a>.
+            </p>
+            <p>
+                I also tinker on side projects like
+                <a href="https://lohbi.com">lohbi</a> and
+                <a href="https://github.com/matx64/synche">synche</a>. This is
+                where I write about things I find interesting along the way.
+            </p>
+            <div class="bio-links">
+                <a href="https://github.com/matx64">github</a>
+                <a href="https://www.linkedin.com/in/matheustalves/"
+                    >linkedin</a
+                >
+                <a href="mailto:hey.malves@gmail.com">email</a>
+            </div>
+        </div>
+    </section>
 
-    <div>
-      <h3>Hi, I'm Matheus 👋</h3>
-      <p>
-        I'm a software engineer who loves computers and here I write about some
-        of my experiences building tech.
-      </p>
-      <p>
-        Most of my work revolves around backend systems and Rust. In my spare
-        time, I work on projects like
-        <a href="https://github.com/matx64/synche">synche</a> and
-        <a href="https://lohbi.com">lohbi</a>.
-      </p>
-      <p>
-        You can find me on <a href="https://github.com/matx64">github</a>,
-        <a href="https://www.linkedin.com/in/matheustalves/">linkedin</a> or
-        <a href="mailto:hey.malves@gmail.com">email</a>.
-      </p>
-    </div>
-  </div>
-
-  <div id="blog-container">
-    <h3>Articles</h3>
-    {% for article in articles %}
-    <div class="article">
-      <h4><a href="blog/{{article.slug}}.html">{{ article.title }}</a></h4>
-      <small>{{ article.date }}</small>
-    </div>
-    {% endfor %}
-  </div>
+    <section class="article-list">
+        <span class="section-label">Writing</span>
+        {% for article in articles %}
+        <a class="article-row" href="/blog/{{article.slug}}.html">
+            <span class="article-title">{{ article.title }}</span>
+            <span class="article-date">{{ article.date }}</span>
+        </a>
+        {% endfor %}
+    </section>
 </main>
-{% endblock content%}
+{% endblock content %}

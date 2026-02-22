@@ -1,4 +1,5 @@
-use comrak::{Options, markdown_to_html};
+use comrak::plugins::syntect::SyntectAdapterBuilder;
+use comrak::{Options, Plugins, markdown_to_html_with_plugins};
 use serde::Serialize;
 use std::fs::{read_dir, read_to_string};
 use yaml_rust2::YamlLoader;
@@ -24,11 +25,22 @@ impl Article {
             .as_str()
             .expect("Article missing date header property")
             .to_owned();
-        let body = markdown_to_html(&body, &Options::default());
+
+        let adapter = SyntectAdapterBuilder::new().css().build();
+        let mut plugins = Plugins::default();
+        plugins.render.codefence_syntax_highlighter = Some(&adapter);
+
+        let body = markdown_to_html_with_plugins(&body, &Options::default(), &plugins);
         let slug = title
             .to_lowercase()
             .chars()
-            .map(|c| if c.is_ascii_alphanumeric() || c == '-' { c } else { ' ' })
+            .map(|c| {
+                if c.is_ascii_alphanumeric() || c == '-' {
+                    c
+                } else {
+                    ' '
+                }
+            })
             .collect::<String>()
             .split_whitespace()
             .collect::<Vec<_>>()
