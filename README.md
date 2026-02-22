@@ -1,21 +1,21 @@
 # matx.dev
 
-A statically generated website. Supports markdown articles for blogging.
+Personal blog built with a custom static site generator in Rust.
 
-### Build
+Markdown articles with YAML frontmatter are converted to HTML using MiniJinja templates. Includes syntax highlighting via comrak/syntect.
+
+## Build
 
 ```sh
 cargo run
 ```
 
-All static files are generated in the `dist` folder.
+Outputs to `dist/`.
 
-### Serving and Development
+## Development
 
 ```sh
-# build and serve website
 cargo run -p serve
-
-# watch for file changes
-watchexec -r "cargo run -p serve"
 ```
+
+Serves at `localhost:3000` with auto-rebuild on file changes.
