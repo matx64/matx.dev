@@ -302,3 +302,115 @@ pre .support  { color: #c9790e; }
 .back-link:hover {
   color: var(--accent);
 }
+
+/* ── CV page ─────────────────────────────────────── */
+
+.cv-page {
+  padding-block: 1.5rem 2.5rem;
+}
+
+.cv-shell {
+  width: min(1680px, calc(100vw - 2.5rem));
+  margin-inline: auto;
+}
+
+.cv-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cv-page-copy {
+  max-width: 52rem;
+}
+
+.cv-page-eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--text-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cv-page-title {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.cv-page-subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 46rem;
+  color: var(--text-2);
+  font-size: 1rem;
+}
+
+.cv-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 72%, black 8%);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--surface);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.cv-page-button:hover {
+  background: color-mix(in srgb, var(--accent) 88%, black 12%);
+  color: var(--surface);
+}
+
+.cv-frame {
+  width: 100%;
+  height: clamp(42rem, 88vh, 96rem);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 18px 50px color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.cv-page-fallback {
+  margin: 0.9rem 0 0;
+  color: var(--text-2);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .cv-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .cv-page {
+    padding-block: 1rem 1.5rem;
+  }
+
+  .cv-page-title {
+    font-size: clamp(1.65rem, 7vw, 2.2rem);
+  }
+
+  .cv-page-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .cv-page-button {
+    width: 100%;
+  }
+
+  .cv-frame {
+    height: 82vh;
+    border-radius: 10px;
+  }
+}

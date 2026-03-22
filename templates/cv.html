@@ -1,0 +1,34 @@
+{% extends "layout.html" %} {% block nav_container_class %}cv-shell{% endblock nav_container_class %} {% block content %}
+<main class="cv-page">
+    <section class="cv-shell">
+        <header class="cv-page-header">
+            <div class="cv-page-copy">
+                <p class="cv-page-eyebrow">Resume</p>
+                <h1 class="cv-page-title">Matheus Alves Resume</h1>
+                <p class="cv-page-subtitle">
+                    View my resume here, or open the PDF in a new tab for the
+                    full document and download options.
+                </p>
+            </div>
+            <a
+                class="cv-page-button"
+                href="{{ cv_pdf_path | safe }}"
+                target="_blank"
+                rel="noreferrer"
+                >Open PDF in New Tab</a
+            >
+        </header>
+
+        <iframe
+            class="cv-frame"
+            src="{{ cv_pdf_path | safe }}"
+            title="Matheus Alves Resume"
+        ></iframe>
+
+        <p class="cv-page-fallback">
+            If the PDF does not render in your browser,
+            <a href="{{ cv_pdf_path | safe }}">open the PDF directly</a>.
+        </p>
+    </section>
+</main>
+{% endblock content %}

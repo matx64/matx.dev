@@ -3,7 +3,8 @@ mod renderer;
 
 use crate::blog::get_articles;
 use crate::renderer::{
-    ARTICLE_TEMPLATE_PATH, DIST_BLOG_DIR, DIST_DIR, LAYOUT_TEMPLATE_PATH, STATIC_DIR,
+    ARTICLE_TEMPLATE_PATH, CV_TEMPLATE_PATH, DIST_BLOG_DIR, DIST_CV_DIR, DIST_DIR,
+    LAYOUT_TEMPLATE_PATH, STATIC_DIR,
 };
 use fs_extra::{
     copy_items,
@@ -20,6 +21,8 @@ pub fn generate_website() {
         .expect("Failed to read layout.html template");
     let article_template = read_to_string(Path::new(ARTICLE_TEMPLATE_PATH))
         .expect("Failed to read article.html template");
+    let cv_template =
+        read_to_string(Path::new(CV_TEMPLATE_PATH)).expect("Failed to read cv.html template");
 
     let mut engine = Environment::new();
     engine
@@ -28,9 +31,13 @@ pub fn generate_website() {
     engine
         .add_template("article.html", &article_template)
         .expect("Failed to add article.html template");
+    engine
+        .add_template("cv.html", &cv_template)
+        .expect("Failed to add cv.html template");
 
     let articles = get_articles();
     renderer::render_index(&engine, &articles);
+    renderer::render_cv(&engine);
     renderer::render_blog(&engine, &articles);
 }
 
@@ -38,6 +45,7 @@ fn init_dist_dir() {
     let dist_path = Path::new(DIST_DIR);
     let static_path = Path::new(STATIC_DIR);
     let dist_blog_path = Path::new(DIST_BLOG_DIR);
+    let dist_cv_path = Path::new(DIST_CV_DIR);
 
     if dist_path.exists() {
         fs::remove_dir_all(dist_path).expect("Failed to clean dist directory");
@@ -45,6 +53,7 @@ fn init_dist_dir() {
 
     create(dist_path, true).expect("Failed to create dist directory");
     create(dist_blog_path, true).expect("Failed to create dist/blog directory");
+    create(dist_cv_path, true).expect("Failed to create dist/cv directory");
     copy_items(&[static_path], dist_path, &CopyOptions::new())
         .expect("Failed to copy static files to dist");
 }
