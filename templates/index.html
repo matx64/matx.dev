@@ -25,7 +25,7 @@
                     >linkedin</a
                 >
                 <a href="mailto:hey.malves@gmail.com">email</a>
-                <a href="/cv">cv</a>
+                <a href="/cv/">cv</a>
             </div>
         </div>
     </section>
@@ -33,7 +33,7 @@
     <section class="article-list">
         <span class="section-label">Writing</span>
         {% for article in articles %}
-        <a class="article-row" href="/blog/{{article.slug}}.html">
+        <a class="article-row" href="/blog/{{article.slug}}">
             <span class="article-title">{{ article.title }}</span>
             <span class="article-date">{{ article.date }}</span>
         </a>
